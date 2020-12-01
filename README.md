@@ -1,12 +1,21 @@
 # Advent of Code 2020
 
-Rather than working each puzzle as a separate project, the plan this year is to use a single project, and
-share as much code between them as possible. I sort of started to try and do that last year, but it didn't
-really work out the way that I wanted. But this is a new year. A new chance.
 
-I want to write a launcher, taking advantage of babel and anything else that gets thrown into the launch
-sequence. I'm going to follow a "plugin" pattern, where each day's source file exposes two methods -- puzzle1
-and puzzle2. The launcher will figure out the day and puzzle number, load that source file, and call the
-exported methods..
 
-As usual for a node app, make sure you do `npm init` first.
+## Installation
+
+`npm init`
+
+
+## Running solutions
+
+`npm start p d`
+
+where p is 1 for puzzle 1, or 2 for puzzle 2
+and d is the day of the puzzle, 1 through 25. Defaults to the current day, if not provided.
+
+
+## Testing
+
+`npm test` to run the unit tests. The daily puzzle code is generally _not_ tested, these tests are for the
+support code.

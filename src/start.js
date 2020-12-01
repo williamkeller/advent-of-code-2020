@@ -1,9 +1,9 @@
 
 
 function print_usage() {
-  console.log('npm start puzzle day')
-  console.log('  puzzle - 1 runs the first puzzle for the day, 2 runs the second')
-  console.log('  day - optional value, 1 to 25. Defaults to the current day if not provided')
+  console.log('npm start p [d]')
+  console.log('  p - 1 runs the first puzzle for the day, 2 runs the second')
+  console.log('  d - optional value, 1 to 25. Defaults to the current day if not provided')
   console.log('')
 }
 
@@ -37,6 +37,8 @@ function validateDayArg(arg) {
 }
 
 
+// FIXME this only works for December, so handle cases when
+// it's no longer December
 function getCurrentDay() {
   return new Date().getUTCDate().toString()
 }
@@ -50,7 +52,7 @@ function runPuzzle(puzzle, day) {
     solver = require(`./day${padDay(day)}`)
   }
   catch {
-    console.log('ERROR: Looks like you tried to run a day that has been written yet')
+    console.log('ERROR: Looks like you tried to run a day that has not been written yet')
     return
   }
 
