@@ -1,12 +1,11 @@
 const load = require('./load')
 
-
 export function puzzle1() {
   let input = load.loadLinesToNumberArray('day01.txt')
 
   let len = input.length
   for(let i = 0; i < len - 1; i++) {
-    for(let j = 0; j < len; j++) {
+    for(let j = i + 1; j < len; j++) {
       let sum = input[i] + input[j]
       if(sum == 2020) {
         console.log(input[i] * input[j])
