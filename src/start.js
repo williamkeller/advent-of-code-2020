@@ -2,17 +2,17 @@
 
 function print_usage() {
   console.log('npm start puzzle day')
-  console.log('  puzzle - 1 runs the first puzzle for the day, 2 runs the second, both runs both')
+  console.log('  puzzle - 1 runs the first puzzle for the day, 2 runs the second')
   console.log('  day - optional value, 1 to 25. Defaults to the current day if not provided')
   console.log('')
 }
 
-// Assumes day is a string
 function padDay(day) {
-  if(day.length == 1)
-    return `0${day}`
+  let str = day.toString()
+  if(str.length == 1)
+    return `0${str}`
   else
-    return day
+    return str
 }
 
 function main() {
@@ -24,7 +24,7 @@ function main() {
     return
   }
 
-  let valid = ['1', '2', 'both'].indexOf(args[0])
+  let valid = ['1', '2'].indexOf(args[0])
   if(valid == -1) {
     console.log('ERROR: puzzle argument is invalid')
     print_usage()
@@ -35,19 +35,41 @@ function main() {
   let day
   if(args[1]) {
     day = args[1]
+    let numDay = parseInt(day)
+    if(isNaN(numDay)) {
+      console.log('ERROR: day argument isn\'t even a day!')
+      print_usage()
+      return
+    }
+    if(numDay <= 0 || numDay > 25) {
+      console.log('ERROR: day argument is out of range')
+      print_usage()
+      return
+    }
   }
   else {
-    day = '1'  // calculate current day, dumb timezones
-    // some error checking too, you pleb
+    let date = new Date()
+    day = date.getUTCDate()
   }
 
-  // Load the correct file and run the specified puzzle(s)
-  const solver = require(`./day${padDay(day)}`)
+  // Load the specified file
+  let solver
+  try {
+    solver = require(`./day${padDay(day)}`)
+  }
+  catch {
+    console.log('ERROR: Looks like you tried to run a day that has been written yet')
+    return
+  }
 
-  if(puzzle == '1' || puzzle == 'both')
-    solver.puzzle1()
-  if(puzzle == '2' || puzzle == 'both')
-    solver.puzzle2()
+  // Run the specified puzzle
+  try {
+    solver[`puzzle${puzzle}`]()
+  }
+  catch(err) {
+    console.log(`ERROR: puzzle${puzzle} threw an error`)
+    console.log(err)
+  }
 }
 
 main()
