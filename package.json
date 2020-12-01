@@ -1,0 +1,17 @@
+{
+  "name": "aoc-2020",
+  "version": "1.0.0",
+  "description": "Advent of Code 2020 ",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node src/start.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.7"
+  }
+}
