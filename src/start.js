@@ -51,8 +51,9 @@ function runPuzzle(puzzle, day) {
   try {
     solver = require(`./day${padDay(day)}`)
   }
-  catch {
+  catch(err) {
     console.log('ERROR: Looks like you tried to run a day that has not been written yet')
+    console.log(err)
     return
   }
 
