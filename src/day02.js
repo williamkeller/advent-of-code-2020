@@ -8,10 +8,9 @@ export function puzzle1() {
 
   for(let pw of data) {
     let vars = pw.match(re)
-    if(vars === null) {
-      console.log(`no match for ${pw}`)
+    if(vars === null)
       continue
-    }
+
 
     let min = parseInt(vars[1])
     let max = parseInt(vars[2])
@@ -38,10 +37,8 @@ export function puzzle2() {
 
   for(let pw of data) {
     let vars = pw.match(re)
-    if(vars === null) {
-      console.log(`no match for ${pw}`)
+    if(vars === null)
       continue
-    }
 
     let a = parseInt(vars[1])
     let b = parseInt(vars[2])
@@ -59,4 +56,10 @@ export function puzzle2() {
       valid += 1
   }
   console.log(`There were ${valid} matching passwords`)
+}
+
+
+export function puzzle3() {
+  puzzle1()
+  puzzle2()
 }

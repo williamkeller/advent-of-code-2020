@@ -2,7 +2,7 @@
 
 function print_usage() {
   console.log('npm start p [d]')
-  console.log('  p - 1 runs the first puzzle for the day, 2 runs the second')
+  console.log('  p - 1 runs the first puzzle for the day, 2 runs the second, 3 runs both')
   console.log('  d - optional value, 1 to 25. Defaults to the current day if not provided')
   console.log('')
 }
@@ -18,7 +18,7 @@ function padDay(day) {
 
 
 function validatePuzzleArg(arg) {
-  if(['1', '2'].indexOf(arg) == -1)
+  if(['1', '2', '3'].indexOf(arg) == -1)
     throw "puzzle argument is invalid"
 
   return arg
@@ -52,7 +52,7 @@ function runPuzzle(puzzle, day) {
     solver = require(`./day${padDay(day)}`)
   }
   catch(err) {
-    console.log('ERROR: Looks like you tried to run a day that has not been written yet')
+    console.log(`ERROR: Unable to load puzzle file for day ${day}`)
     console.log(err)
     return
   }

@@ -29,3 +29,8 @@ export function puzzle2() {
   }) 
   console.log(result)
 }
+
+export function puzzle3() {
+  puzzle1()
+  puzzle2()
+}
