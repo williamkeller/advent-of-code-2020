@@ -20,3 +20,11 @@ Also might be interesting to wrap this whole thing up in an Electron project. I'
 puzzle solvers to a worker task, to keep from killing the GUI thread.
 
 Or do a rust version. That might be fun too.
+
+
+## Day 03
+
+Fairly simple puzzle. I made a dumb error that cost me several minutes.
+
+I also lost some time switching between test data and real data. I think I'm going to set up a second data
+file for test data, and then pass the file name into the solvers.
