@@ -9,7 +9,7 @@ class SolverDay03 extends SolverBase {
 
 
   loadData() {
-    return aoc.loadLinesToArray(this.dataFile)
+    return aoc.load2dCharArray(this.dataFile)
   }
 
 
@@ -26,7 +26,7 @@ class SolverDay03 extends SolverBase {
       row += deltay
       col = (col + deltax) % maxWidth
 
-      if(data[row].charAt(col) == '#')
+      if(data[row][col] == '#')
         hitCount++
     }
 

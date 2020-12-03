@@ -1,23 +1,20 @@
 const aoc = require('./aoc')
 
 class SolverBase {
+
+  //
+  // Methods to be overridden by subclasses -------------------------
+  //
   constructor(day, useTestData = false) {
     this._useTestData = useTestData
     this._day = day
   }
 
-  get day() {
-    return this._day
-  }
-
-  get dataFile() {
-    let test = this._useTestData ? '_test' : ''
-    return `day${this.day}${test}.txt`
-  }
 
   loadData() {
     throw "Data loader has not be specified"
   }
+
 
   puzzle1() {
     console.log('not implemented yet')
@@ -26,6 +23,20 @@ class SolverBase {
 
   puzzle2() {
     console.log('not implemented yet')
+  }
+
+  //
+  // ----------------------------------------------------------------
+  //
+
+  get day() {
+    return this._day
+  }
+
+
+  get dataFile() {
+    let test = this._useTestData ? '_test' : ''
+    return `day${this.day}${test}.txt`
   }
 
 

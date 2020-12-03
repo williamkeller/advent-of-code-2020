@@ -25,7 +25,7 @@ function loadDataFile(name, dir = dataDir()) {
  * @param {string} dir - Data directory (usually only used during testing)
  * @return {array} The loaded text strings
  */
-export function loadElementsToArray(name, sep, dir = dataDir()) {
+export function loadElements(name, sep, dir = dataDir()) {
   return loadDataFile(name, dir).split(sep)
 }
 
@@ -36,8 +36,8 @@ export function loadElementsToArray(name, sep, dir = dataDir()) {
  * @param {string} dir - Data directory (usually only used during testing)
  * @return {array} The loaded text strings
  */
-export function loadLinesToArray(name, dir = dataDir()) {
-  return loadDataElementsToArray(name, '\n', dir)
+export function loadLines(name, dir = dataDir()) {
+  return loadElements(name, '\n', dir)
 }
 
 
@@ -47,13 +47,19 @@ export function loadLinesToArray(name, dir = dataDir()) {
  * @param {string} dir - Data directory (usually only used during testing)
  * @return {array} The loaded numbers
  */
-export function loadLinesToNumberArray(name, dir = dataDir()) {
-  return loadLinesToArray(name, dir).map(x => parseInt(x))
+export function loadNumberLines(name, dir = dataDir()) {
+  return loadLines(name, dir).map(x => parseInt(x))
 }
 
 
 export function loadSeparatedValues(name, sep = ',', dir = dataDir()) {
   return loadDataFile(name, dir).split(sep)
+}
+
+
+export function load2dCharArray(name, dir = dataDir()) {
+  let data = loadLines(name, dir)
+  return data.map(line => line.split(''))
 }
 
 

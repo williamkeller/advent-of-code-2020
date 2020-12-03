@@ -12,7 +12,7 @@ class SolverDay02 extends SolverBase {
 
 
   loadData() {
-    return aoc.loadLinesToArray(this.dataFile)
+    return aoc.loadLines(this.dataFile)
   }
 
 
