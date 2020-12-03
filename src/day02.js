@@ -1,10 +1,13 @@
 const aoc = require('./aoc')
 const SolverBase = require('./solver_base')
 
+const REGEX = /^(\d*)-(\d*) ([a-z]): ([a-z]*)/
+
+
 class SolverDay02 extends SolverBase {
 
-  constructor(day, testData = false) {
-    super(day, testData)
+  constructor(testData = false) {
+    super('02', testData)
   }
 
 
@@ -16,10 +19,9 @@ class SolverDay02 extends SolverBase {
   puzzle1() {
     let data = this.loadData()
     let valid = 0
-    let re = /^(\d*)-(\d*) ([a-z]): ([a-z]*)/
 
     for(let pw of data) {
-      let vars = pw.match(re)
+      let vars = pw.match(REGEX)
       if(vars === null)
         continue
 
@@ -45,10 +47,9 @@ class SolverDay02 extends SolverBase {
   puzzle2() {
     let data = this.loadData()
     let valid = 0
-    let re = /^(\d*)-(\d*) ([a-z]): ([a-z]*)/
 
     for(let pw of data) {
-      let vars = pw.match(re)
+      let vars = pw.match(REGEX)
       if(vars === null)
         continue
 

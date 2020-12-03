@@ -3,8 +3,8 @@ const SolverBase = require('./solver_base')
 
 class SolverDay01 extends SolverBase {
 
-  constructor(day, testData = false) {
-    super(day, testData)
+  constructor(testData = false) {
+    super('01', testData)
   }
 
 

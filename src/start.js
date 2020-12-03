@@ -9,8 +9,6 @@ function print_usage() {
 }
 
 
-
-
 function validatePuzzleArg(arg) {
   if(['1', '2', '3'].indexOf(arg) == -1)
     throw "puzzle argument is invalid"
@@ -58,7 +56,7 @@ function runPuzzle(puzzle, test, day) {
 
   // Run the specified puzzle
   try {
-    let s = new Solver(day, test)
+    let s = new Solver(test)
     s[`puzzle${puzzle}`]()
   }
   catch(err) {

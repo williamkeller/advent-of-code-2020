@@ -4,3 +4,5 @@ nnoremap <leader>1 :! npm start 1<cr>
 nnoremap <leader>2 :! npm start 2<cr>
 nnoremap <leader>3 :! npm start 3<cr>
 
+nnoremap <leader>t1 :! npm start 1 t<cr>
+nnoremap <leader>t2 :! npm start 2 t<cr>

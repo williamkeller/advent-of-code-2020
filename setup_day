@@ -14,8 +14,8 @@ echo "const SolverBase = require('./solver_base')" >> $SRC
 echo "" >> $SRC
 echo "" >> $SRC
 echo "class SolverDay${DAY} extends SolverBase {" >> $SRC
-echo "  constructor(day, testData = false) {" >> $SRC
-echo "    super(day, testData)" >> $SRC
+echo "  constructor(testData = false) {" >> $SRC
+echo "    super('${DAY}', testData)" >> $SRC
 echo "  }" >> $SRC
 echo "" >> $SRC
 echo "" >> $SRC

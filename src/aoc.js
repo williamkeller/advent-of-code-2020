@@ -7,8 +7,26 @@ function dataDir() {
 }
 
 
+/**
+ * Loads the entire contents of a data file into a single string
+ * @param {string} name - Name of the file to load
+ * @param {string} dir - The data directory 
+ * @return {string} The loaded text data
+ **/
 function loadDataFile(name, dir = dataDir()) {
   return fs.readFileSync(path.join(dir, name), 'utf8')
+}
+
+
+/**
+ * Loads a data file that is made up of lines of text.
+ * @param {string} name - Name of the file to load (from the data directory)
+ * @param {string} sep - The separator used to break up the data
+ * @param {string} dir - Data directory (usually only used during testing)
+ * @return {array} The loaded text strings
+ */
+export function loadElementsToArray(name, sep, dir = dataDir()) {
+  return loadDataFile(name, dir).split(sep)
 }
 
 
@@ -19,7 +37,7 @@ function loadDataFile(name, dir = dataDir()) {
  * @return {array} The loaded text strings
  */
 export function loadLinesToArray(name, dir = dataDir()) {
-  return loadDataFile(name, dir).split('\n')
+  return loadDataElementsToArray(name, '\n', dir)
 }
 
 
