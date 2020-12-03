@@ -8,7 +8,7 @@ function dataDir() {
 
 
 function loadDataFile(name, dir = dataDir()) {
-  return fs.readFileSync(path.join(DATA_DIR, name), 'utf8')
+  return fs.readFileSync(path.join(dir, name), 'utf8')
 }
 
 
