@@ -1,0 +1,38 @@
+#!/bin/sh
+
+DAY=$1
+
+touch data/day_${DAY}.txt
+touch data/day_${DAY}_test.txt
+
+SRC="src/day${DAY}.js"
+
+touch $SRC
+
+echo "const aoc = require('./aoc')" >> $SRC
+echo "const SolverBase = require('./solver_base')" >> $SRC
+echo "" >> $SRC
+echo "" >> $SRC
+echo "class SolverDay${DAY} extends SolverBase {" >> $SRC
+echo "  constructor(day, testData = false) {" >> $SRC
+echo "    super(day, testData)" >> $SRC
+echo "  }" >> $SRC
+echo "" >> $SRC
+echo "" >> $SRC
+echo "  loadData() {" >> $SRC
+echo "" >> $SRC
+echo "  }" >> $SRC
+echo "" >> $SRC
+echo "" >> $SRC
+echo "  puzzle1() {" >> $SRC
+echo "" >> $SRC
+echo "  }" >> $SRC
+echo "" >> $SRC
+echo "" >> $SRC
+echo "  puzzle2() {" >> $SRC
+echo "" >> $SRC
+echo "  }" >> $SRC
+echo "}" >> $SRC
+echo "" >> $SRC
+echo "" >> $SRC
+echo "module.exports = SolverDay${DAY}" >> $SRC
