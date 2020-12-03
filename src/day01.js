@@ -1,4 +1,6 @@
 const aoc = require('./aoc')
+const Loader = require('./loader')
+
 const SolverBase = require('./solver_base')
 
 class SolverDay01 extends SolverBase {
@@ -9,7 +11,7 @@ class SolverDay01 extends SolverBase {
 
 
   loadData() {
-    return aoc.loadLines(this.dataFile)
+    return Loader.loadNumberLines(this.dataFile)
   }
 
 

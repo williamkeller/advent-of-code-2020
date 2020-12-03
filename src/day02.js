@@ -1,4 +1,4 @@
-const aoc = require('./aoc')
+const Loader = require('./loader')
 const SolverBase = require('./solver_base')
 
 const REGEX = /^(\d*)-(\d*) ([a-z]): ([a-z]*)/
@@ -12,7 +12,7 @@ class SolverDay02 extends SolverBase {
 
 
   loadData() {
-    return aoc.loadLines(this.dataFile)
+    return Loader.loadLines(this.dataFile)
   }
 
 

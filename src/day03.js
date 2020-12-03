@@ -1,4 +1,4 @@
-const aoc = require('./aoc')
+const Loader = require('./loader')
 const SolverBase = require('./solver_base')
 
 class SolverDay03 extends SolverBase {
@@ -9,7 +9,7 @@ class SolverDay03 extends SolverBase {
 
 
   loadData() {
-    return aoc.load2dCharArray(this.dataFile)
+    return Loader.load2dCharArray(this.dataFile)
   }
 
 
