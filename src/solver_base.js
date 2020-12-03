@@ -15,6 +15,9 @@ class SolverBase {
     return `day${this.day}${test}.txt`
   }
 
+  loadData() {
+    throw "Data loader has not be specified"
+  }
 
   puzzle1() {
     console.log('not implemented yet')

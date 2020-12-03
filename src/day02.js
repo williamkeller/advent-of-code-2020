@@ -7,8 +7,14 @@ class SolverDay02 extends SolverBase {
     super(day, testData)
   }
 
+
+  loadData() {
+    return aoc.loadLinesToArray(this.dataFile)
+  }
+
+
   puzzle1() {
-    let data = aoc.loadLinesToArray(this.dataFile)
+    let data = this.loadData()
     let valid = 0
     let re = /^(\d*)-(\d*) ([a-z]): ([a-z]*)/
 
@@ -37,7 +43,7 @@ class SolverDay02 extends SolverBase {
 
 
   puzzle2() {
-    let data = aoc.loadLinesToArray(this.dataFile)
+    let data = this.loadData()
     let valid = 0
     let re = /^(\d*)-(\d*) ([a-z]): ([a-z]*)/
 

@@ -7,8 +7,14 @@ class SolverDay01 extends SolverBase {
     super(day, testData)
   }
 
+
+  loadData() {
+    return aoc.loadLinesToNumberArray(this.dataFile)
+  }
+
+
   puzzle1() {
-  let input = aoc.loadLinesToNumberArray(this.dataFile)
+  let input = this.loadData()
 
   let result = -1
   aoc.permute2(input, (a, b) => {
@@ -22,8 +28,9 @@ class SolverDay01 extends SolverBase {
   console.log(result)
   }
 
+
   puzzle2() {
-  let input = aoc.loadLinesToNumberArray(this.dataFile)
+  let input = this.loadData()
 
   let result = -1
   aoc.permute3(input, (a, b, c) => {

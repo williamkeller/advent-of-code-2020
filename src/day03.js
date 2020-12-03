@@ -7,6 +7,12 @@ class SolverDay03 extends SolverBase {
     super(day, testData)
   }
 
+
+  loadData() {
+    return aoc.loadLinesToArray(this.dataFile)
+  }
+
+
   runSlope(deltax, deltay, data) {
     let maxWidth = data[0].length
     let maxHeight = data.length
@@ -27,8 +33,9 @@ class SolverDay03 extends SolverBase {
     return hitCount
   }
 
+
   puzzle1() {
-    let rows = aoc.loadLinesToArray(this.dataFile)
+    let rows = this.loadData()
     let hitCount = this.runSlope(3, 1, rows)
 
     console.log(`trees hit = ${hitCount}`)
@@ -36,7 +43,7 @@ class SolverDay03 extends SolverBase {
 
 
   puzzle2() {
-    let rows = aoc.loadLinesToArray('day03.txt')
+    let rows = this.loadData()
 
     let runs = [
       [1, 1], [3, 1], [5, 1], [7, 1], [1, 2]
