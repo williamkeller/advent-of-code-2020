@@ -6,6 +6,12 @@ function dataDir() {
   return path.resolve('./data')
 }
 
+
+function loadDataFile(name, dir = dataDir()) {
+  return fs.readFileSync(path.join(DATA_DIR, name), 'utf8')
+}
+
+
 /**
  * Loads a data file that is made up of lines of text.
  * @param {string} name - Name of the file to load (from the data directory)
@@ -13,7 +19,7 @@ function dataDir() {
  * @return {array} The loaded text strings
  */
 export function loadLinesToArray(name, dir = dataDir()) {
-  return fs.readFileSync(path.join(DATA_DIR, name), 'utf8').split('\n')
+  return loadDataFile(name, dir).split('\n')
 }
 
 
@@ -24,7 +30,12 @@ export function loadLinesToArray(name, dir = dataDir()) {
  * @return {array} The loaded numbers
  */
 export function loadLinesToNumberArray(name, dir = dataDir()) {
-  return loadLinesToArray(name).map(x => parseInt(x))
+  return loadLinesToArray(name, dir).map(x => parseInt(x))
+}
+
+
+export function loadSeparatedValues(name, sep = ',', dir = dataDir()) {
+  return loadDataFile(name, dir).split(sep)
 }
 
 
