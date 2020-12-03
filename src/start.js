@@ -1,20 +1,14 @@
-
+const aoc = require('./aoc')
 
 function print_usage() {
   console.log('npm start p [d]')
   console.log('  p - 1 runs the first puzzle for the day, 2 runs the second, 3 runs both')
+  console.log('  t - option value, true to use test data, false to use real data. Default is false')
   console.log('  d - optional value, 1 to 25. Defaults to the current day if not provided')
   console.log('')
 }
 
 
-function padDay(day) {
-  let str = day.toString()
-  if(str.length == 1)
-    return `0${str}`
-  else
-    return str
-}
 
 
 function validatePuzzleArg(arg) {
@@ -24,6 +18,12 @@ function validatePuzzleArg(arg) {
   return arg
 }
 
+function validateTestData(arg) {
+  if(['t', 'f'].indexOf(arg) == -1)
+    throw "test data argument is invalid"
+
+  return arg == 't' ? true : false
+}
 
 function validateDayArg(arg) {
   let day = parseInt(arg)
@@ -33,7 +33,7 @@ function validateDayArg(arg) {
   if(day <= 0 || day > 25)
     throw "day argument is out of range"
 
-  return day.toString()
+  return aoc.padDay(day)
 }
 
 
@@ -44,12 +44,11 @@ function getCurrentDay() {
 }
 
 
-function runPuzzle(puzzle, day) {
-
+function runPuzzle(puzzle, test, day) {
   // Load the specified file
-  let solver
+  let Solver
   try {
-    solver = require(`./day${padDay(day)}`)
+    Solver = require(`./day${aoc.padDay(day)}`)
   }
   catch(err) {
     console.log(`ERROR: Unable to load puzzle file for day ${day}`)
@@ -59,7 +58,8 @@ function runPuzzle(puzzle, day) {
 
   // Run the specified puzzle
   try {
-    solver[`puzzle${puzzle}`]()
+    let s = new Solver(day, test)
+    s[`puzzle${puzzle}`]()
   }
   catch(err) {
     console.log(`ERROR: puzzle${puzzle} threw an error`)
@@ -87,17 +87,25 @@ function main() {
     return
   }
 
-  let day
+  let testData = false
   try {
-    day = validateDayArg(args[1] || getCurrentDay())
+    testData = validateTestData(args[1] || 'f')
   }
   catch(err) {
-    console.log('ERROR: day argument isn\'t even a day!')
+    console.log(`ERROR: ${err}`)
+  }
+
+  let day
+  try {
+    day = validateDayArg(args[2] || getCurrentDay())
+  }
+  catch(err) {
+    console.log(`ERROR: ${err}`)
     print_usage()
     return
   }
 
-  runPuzzle(puzzle, day)
+  runPuzzle(puzzle, testData, day)
 }
 
 
@@ -106,7 +114,6 @@ if(process.argv[1] == __filename)
   main()
 
 module.exports = {
-  padDay,
   validatePuzzleArg,
   validateDayArg,
   getCurrentDay

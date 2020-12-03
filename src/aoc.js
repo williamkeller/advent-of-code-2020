@@ -71,3 +71,12 @@ export function permute3(array, callback) {
     }
   }
 }
+
+
+export function padDay(day) {
+  let str = day.toString()
+  if(str.length == 1)
+    return `0${str}`
+  else
+    return str
+}

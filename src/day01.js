@@ -1,7 +1,14 @@
 const aoc = require('./aoc')
+const SolverBase = require('./solver_base')
 
-export function puzzle1() {
-  let input = aoc.loadLinesToNumberArray('day01.txt')
+class SolverDay01 extends SolverBase {
+
+  constructor(day, testData = false) {
+    super(day, testData)
+  }
+
+  puzzle1() {
+  let input = aoc.loadLinesToNumberArray(this.dataFile)
 
   let result = -1
   aoc.permute2(input, (a, b) => {
@@ -13,10 +20,10 @@ export function puzzle1() {
       return false
   })
   console.log(result)
-}
+  }
 
-export function puzzle2() {
-  let input = aoc.loadLinesToNumberArray('day01.txt')
+  puzzle2() {
+  let input = aoc.loadLinesToNumberArray(this.dataFile)
 
   let result = -1
   aoc.permute3(input, (a, b, c) => {
@@ -26,11 +33,10 @@ export function puzzle2() {
     }
     else
       return false
-  }) 
+  })
   console.log(result)
+  }
 }
 
-export function puzzle3() {
-  puzzle1()
-  puzzle2()
-}
+module.exports = SolverDay01
+
