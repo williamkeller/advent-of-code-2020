@@ -20,7 +20,7 @@ class SolverDay04 extends SolverBase {
         batch = ''
       }
       else {
-        batch += ' ' + row
+        batch += row + ' '
       }
     }
     batches.push(batch)
