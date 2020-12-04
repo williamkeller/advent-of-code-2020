@@ -38,7 +38,7 @@ class Loader {
    * @return {array} The loaded text strings
    */
   static loadLines(name, dir = this.dataDir()) {
-    return this.loadElements(name, '\n', dir)
+    return this.loadElements(name, '\n', dir).map(l => l.trim())
   }
 
 

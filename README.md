@@ -9,10 +9,11 @@
 
 ## Running solutions
 
-`npm start p d`
+`npm start p t d`
 
 where p is 1 for puzzle 1, or 2 for puzzle 2
-and d is the day of the puzzle, 1 through 25. Defaults to the current day, if not provided.
+t is whether to run test data (t) or real data (f), defaults to f
+and d is the day of the puzzle, 1 through 25, defaults to the current day, if not provided.
 
 
 ## Testing

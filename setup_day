@@ -2,14 +2,15 @@
 
 DAY=$1
 
-touch data/day_${DAY}.txt
-touch data/day_${DAY}_test.txt
+touch data/day${DAY}.txt
+touch data/day${DAY}_test.txt
 
 SRC="src/day${DAY}.js"
 
 touch $SRC
 
 echo "const aoc = require('./aoc')" >> $SRC
+echo "const Loader = require('./loader')" >> $SRC
 echo "const SolverBase = require('./solver_base')" >> $SRC
 echo "" >> $SRC
 echo "" >> $SRC
