@@ -11,9 +11,11 @@
 
 `npm start p t d`
 
-where p is 1 for puzzle 1, or 2 for puzzle 2
-t is whether to run test data (t) or real data (f), defaults to f
-and d is the day of the puzzle, 1 through 25, defaults to the current day, if not provided.
+* where p is 1 for puzzle 1, or 2 for puzzle 2
+
+* t is whether to run test data (t) or real data (f), defaults to f
+
+* d is the day of the puzzle, 1 through 25, defaults to the current day, if not provided.
 
 
 ## Testing

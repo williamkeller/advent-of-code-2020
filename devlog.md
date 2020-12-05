@@ -38,3 +38,12 @@ Part two suuuuucked. The mistake was not handling cases where a regex matched le
 For instance, the passpord id is supposed to be nine digits, so I had a regex of /pid:(\d{9})/, which is fine,
 unless the pid is 10 digits long, in which case I get a fall positive. So I had to make sure to add a
 whitespace at the end of each one to keep that from happening. Huge pain in the rear.
+
+
+## Day 05
+
+I got started almost twenty minutes late on this one. By then, Eric was already done. He's creeping up on me.
+The puzzle was straightforward, but hidden behind an overly complicated and obtuse description. It took me
+several times reading through it before I understand what they were actually asking for. Once I understood the
+problem, it was pretty quick. But between starting late and that initial confusion, this was another slow
+solution.
