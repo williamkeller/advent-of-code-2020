@@ -42,6 +42,26 @@ describe('Monkeypatching javascript objects', () => {
       expect(count).toEqual(84)
     })
   })
+
+
+  describe('Array uniq', () => {
+    test('remove duplicates', () => {
+      let x = [1, 1, 2, 3, 3, 4]
+      expect(x.uniq()).toEqual([1, 2, 3, 4])
+    })
+  })
+
+
+  describe('Array histogram', () => {
+    test('generate histogram', () => {
+      let a = ['a', 'a', 'a', 'b', 'b', 'c']
+      let histo = a.histogram()
+
+      expect(histo['a']).toEqual(3)
+      expect(histo['b']).toEqual(2)
+      expect(histo['c']).toEqual(1)
+    })
+  })
 })
 
 

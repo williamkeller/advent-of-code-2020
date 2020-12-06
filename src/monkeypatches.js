@@ -5,6 +5,8 @@ String.prototype.sort = function() {
 
 
 
+
+
 Array.prototype.permute2 = function(callback) {
   let array = this.valueOf()
   let len = array.length
@@ -28,4 +30,21 @@ Array.prototype.permute3 = function(callback) {
       }
     }
   }
+}
+
+Array.prototype.uniq = function() {
+  return [...new Set(this.valueOf())]
+}
+
+Array.prototype.histogram = function() {
+  let histo = {}
+
+  for(let value of this.valueOf()) {
+    if(histo[value] === undefined)
+      histo[value] = 1
+    else
+      histo[value] += 1
+  }
+
+  return histo
 }

@@ -9,32 +9,16 @@ class SolverDay04 extends SolverBase {
 
 
   loadData() {
-    let rows = Loader.loadLines(this.dataFile)
-    let batches = []
-
-    let batch = ''
-    for(let row of rows) {
-      if(row.length == 0) {
-        batches.push(batch)
-        batch = ''
-      }
-      else {
-        batch += row + ' '
-      }
-    }
-    batches.push(batch)
-
-    console.log(`${batches.length} loaded`)
-
-    return batches
-  }
+    return Loader.loadTextChunks(this.dataFile)
+ }
 
 
   puzzle1() {
     let batches = this.loadData()
     let correct = 0
     const fields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
-    for(let batch of batches) {
+    for(let rawBatch of batches) {
+      let batch = rawBatch.join(' ')
       let valid = true
       for(let field of fields) {
         if(batch.includes(field) == false) {
@@ -55,7 +39,8 @@ class SolverDay04 extends SolverBase {
     let batches = this.loadData()
     let correct = 0
     let match, value
-    for(let batch of batches) {
+    for(let rawBatch of batches) {
+      let batch = rawBatch.join(' ')
 
       match = batch.match(/byr:(\d{4}) /)
       if(match == null)
