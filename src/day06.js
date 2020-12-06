@@ -1,4 +1,3 @@
-const aoc = require('./aoc')
 const Loader = require('./loader')
 const SolverBase = require('./solver_base')
 const util = require('util')

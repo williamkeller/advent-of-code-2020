@@ -1,5 +1,4 @@
 require('./monkeypatches')
-const aoc = require('./aoc')
 
 function print_usage() {
   console.log('npm start p [d]')
@@ -7,6 +6,15 @@ function print_usage() {
   console.log('  t - option value, true to use test data, false to use real data. Default is false')
   console.log('  d - optional value, 1 to 25. Defaults to the current day if not provided')
   console.log('')
+}
+
+
+function padDay(day) {
+  let str = day.toString()
+  if(str.length == 1)
+    return `0${str}`
+  else
+    return str
 }
 
 
@@ -32,7 +40,7 @@ function validateDayArg(arg) {
   if(day <= 0 || day > 25)
     throw "day argument is out of range"
 
-  return aoc.padDay(day)
+  return padDay(day)
 }
 
 
@@ -47,7 +55,7 @@ function runPuzzle(puzzle, test, day) {
   // Load the specified file
   let Solver
   try {
-    Solver = require(`./day${aoc.padDay(day)}`)
+    Solver = require(`./day${padDay(day)}`)
   }
   catch(err) {
     console.log(`ERROR: Unable to load puzzle file for day ${day}`)

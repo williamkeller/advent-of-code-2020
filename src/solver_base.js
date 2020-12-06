@@ -1,5 +1,3 @@
-const aoc = require('./aoc')
-
 class SolverBase {
 
   //

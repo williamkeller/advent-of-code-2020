@@ -1,4 +1,3 @@
-const aoc = require('./aoc')
 const Loader = require('./loader')
 
 const SolverBase = require('./solver_base')
@@ -19,7 +18,7 @@ class SolverDay01 extends SolverBase {
   let input = this.loadData()
 
   let result = -1
-  aoc.permute2(input, (a, b) => {
+  input.permute2((a, b) => {
     if(a + b == 2020) {
       result = a * b
       return true
@@ -35,7 +34,7 @@ class SolverDay01 extends SolverBase {
   let input = this.loadData()
 
   let result = -1
-  aoc.permute3(input, (a, b, c) => {
+  input.permute3((a, b, c) => {
     if(a + b + c == 2020) {
       result = a * b * c
       return true
