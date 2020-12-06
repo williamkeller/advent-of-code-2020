@@ -1,3 +1,4 @@
+require('./monkeypatches')
 const aoc = require('./aoc')
 
 function print_usage() {

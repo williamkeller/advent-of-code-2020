@@ -1,10 +1,10 @@
 const start = require('../src/start')
 
 describe('start module', () => {
-  test('padDay', () => {
-    expect(start.padDay(1)).toEqual('01')
-    expect(start.padDay(13)).toEqual('13')
-  })
+  // test('padDay', () => {
+  //   expect(start.padDay(1)).toEqual('01')
+  //   expect(start.padDay(13)).toEqual('13')
+  // })
 
 
   test('validatePuzzleArg', () => {
@@ -17,7 +17,11 @@ describe('start module', () => {
     }).not.toThrow()
 
     expect(() => {
-      start.validatePuzzleArg('3')
+      start.validatePuzzleArg('9')
+    }).toThrow()
+
+    expect(() => {
+      start.validatePuzzleArg('X')
     }).toThrow()
   })
 
@@ -39,9 +43,9 @@ describe('start module', () => {
       start.validateDayArg('bleh')
     }).toThrow()
 
-    expect(start.validateDayArg(1)).toEqual('1')
+    expect(start.validateDayArg(1)).toEqual('01')
 
-    expect(start.validateDayArg('1')).toEqual('1')
+    expect(start.validateDayArg('1')).toEqual('01')
   })
 
 
