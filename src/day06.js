@@ -11,63 +11,37 @@ class SolverDay06 extends SolverBase {
 
 
   loadData() {
-    return Loader.loadLines(this.dataFile)
+    return Loader.loadTextChunks(this.dataFile)
   }
 
 
   puzzle1() {
-    let lines = this.loadData()
-    let chunks = []
-    let chunk = [] 
-
-    for(let line of lines) {
-      if(line == '') {
-        chunks.push(chunk)
-        chunk = [] 
-      }
-      else {
-        chunk.push(line)
-      }
-    }
-    chunks.push(chunk)
-
+    let chunks = this.loadData()
     let total = 0
-    let forms = chunks.map((c) => {
-      let people = c.length
+    for(let c of chunks) {
       let qs = c.join('').split('')
-      let questions = [...new Set(qs)].length
 
-      total += questions
-    })
+      // What a stupid way to do this. Javascript arrays don't have a 'unique'
+      // function? You have to use Set instead? Just dumb.
+      let qcount = [...new Set(qs)].length
+
+      total += qcount
+    }
 
     console.log(`total count = ${total}`)
   }
 
 
   puzzle2() {
-    let lines = this.loadData()
-    let chunks = []
-    let chunk = [] 
-
-    for(let line of lines) {
-      if(line == '') {
-        chunks.push(chunk)
-        chunk = [] 
-      }
-      else {
-        chunk.push(line)
-      }
-    }
-    chunks.push(chunk)
-
+    let chunks = this.loadData()
     let total = 0
 
     for(let chunk of chunks) {
 
       let pcount = 0
-      let people = chunk.length
+      let groupSize = chunk.length
       let answers = chunk.join('').split('')
-      let qs = {} 
+      let qs = {}
 
       for(let a of answers) {
         if(qs[a] === undefined)
@@ -76,13 +50,13 @@ class SolverDay06 extends SolverBase {
           qs[a] += 1
       }
 
+      // Figuring out this pattern was the only bright spot of the night
       for(let [key, value] of Object.entries(qs)) {
-        if(value == people)
+        if(value == groupSize)
           pcount += 1
       }
 
       total += pcount
-      // console.log(`people = ${people}, ans = ${answers}  **  ${util.inspect(qs)}`)
     }
 
     console.log(`total = ${total}`)

@@ -62,6 +62,26 @@ class Loader {
     let data = this.loadLines(name, dir)
     return data.map(line => line.split(''))
   }
+
+  static loadTextChunks(name, dir = this.dataDir()) {
+    let lines = this.loadLines(name, dir)
+    let chunks = []
+    let chunk = []
+
+    for(let line of lines) {
+      if(line == '') {
+        chunks.push(chunk)
+        chunk = []
+      }
+      else {
+        chunk.push(line)
+      }
+    }
+    if(chunk.length > 0)
+      chunks.push(chunk)
+
+    return chunks
+  }
 }
 
 module.exports = Loader
