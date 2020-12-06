@@ -47,3 +47,13 @@ The puzzle was straightforward, but hidden behind an overly complicated and obtu
 several times reading through it before I understand what they were actually asking for. Once I understood the
 problem, it was pretty quick. But between starting late and that initial confusion, this was another slow
 solution.
+
+
+## Day 06
+
+Today's puzzle demonstrated a pretty fundamental weakness in Javascript. It doesn't have great array tools, or
+even string tools for that matter. Sorting is just awful. There is no `uniq` method like Ruby's, you have to
+convert an array into a set and then back into an array. Just awful.
+I'm going to redo a couple of these puzzles in Ruby, I think, just to compare. Hopefully by tonight, I can
+make a decision between sticking with Javascript or shifting to Ruby. Because switching course in mid-stream
+is always the best approach.
