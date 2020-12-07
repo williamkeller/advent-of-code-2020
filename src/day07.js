@@ -47,19 +47,23 @@ class SolverDay07 extends SolverBase {
   }
 
 
+  printBagList(bags) {
+    for(let bag of bags) {
+      console.log(util.inspect(bag))
+    }
+  }
+
+
   findGoldBag(bags, color) {
     let bag = bags.find(b => b.color == color)
     for(let iBag of bag.inside) {
       if(iBag.color == 'shiny gold') {
-        process.stdout.write('shiny gold  ')
         return true
       }
       else {
         let ret = this.findGoldBag(bags, iBag.color)
-        if(ret == true) {
-          process.stdout.write(`${iBag.color}  `)
+        if(ret == true)
           return true
-        }
       }
     }
 
@@ -75,88 +79,62 @@ class SolverDay07 extends SolverBase {
       count += this.findChildBagCount(bags, ibag.color) * ibag.amount
     }
 
-    console.log(`${color} has ${count} children`)
     return count
+  }
 
+
+  parseRulesList(data) {
+    const re_start = /^([\w ]+)(?= bags contain)/
+    const re_end = /^([\w ]+)(?= bags contain no other bags)/
+
+    let bags = []
+
+    for(let line of data) {
+      let match
+
+      match = line.match(re_end)
+      if(match) {
+        bags.push( {color: match[1], inside: [] })
+        continue
+      }
+
+      match = line.match(re_start)
+      if(match) {
+        let nodes = this.parseInteriorBags(line)
+
+        bags.push( { color: match[1], inside: nodes })
+        continue
+      }
+    }
+
+    return bags
   }
 
 
   puzzle1() {
     const data = this.loadData()
-    const re_start = /^([\w ]+)(?= bags contain)/
-    const re_end = /^([\w ]+)(?= bags contain no other bags)/
-
-    let bags = []
-
-    for(let line of data) {
-      let match
-
-      match = line.match(re_end)
-      if(match) {
-        bags.push( {color: match[1], inside: [] })
-        continue
-      }
-
-      match = line.match(re_start)
-      if(match) {
-        let nodes = this.parseInteriorBags(line)
-
-        bags.push( { color: match[1], inside: nodes })
-        continue
-      }
-    }
+    const bags = this.parseRulesList(data)
 
     let foundIn = []
     for(let bag of bags) {
-      // console.log(bag.color)
       let found = this.findGoldBag(bags, bag.color)
       if(found) {
-        process.stdout.write(`${bag.color}  `)
-        console.log('\n\n')
         foundIn.push(bag.color)
       }
     }
 
 
-    console.log(foundIn)
-    console.log(foundIn.length)
+    console.log(`${foundIn.length} bags could contain a gold one`)
   }
 
 
   puzzle2() {
     const data = this.loadData()
-    const re_start = /^([\w ]+)(?= bags contain)/
-    const re_end = /^([\w ]+)(?= bags contain no other bags)/
-
-    let bags = []
-
-    for(let line of data) {
-      let match
-
-      match = line.match(re_end)
-      if(match) {
-        bags.push( {color: match[1], inside: [] })
-        continue
-      }
-
-      match = line.match(re_start)
-      if(match) {
-        let nodes = this.parseInteriorBags(line)
-
-        bags.push( { color: match[1], inside: nodes })
-        continue
-      }
-    }
-
-    for(let bag of bags) {
-      console.log(util.inspect(bag))
-    }
+    const bags = this.parseRulesList(data)
 
     let count = this.findChildBagCount(bags, 'shiny gold')
 
     console.log(`gold bag must contain ${count} bags`)
-
-
   }
 }
 

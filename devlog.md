@@ -57,3 +57,12 @@ convert an array into a set and then back into an array. Just awful.
 I'm going to redo a couple of these puzzles in Ruby, I think, just to compare. Hopefully by tonight, I can
 make a decision between sticking with Javascript or shifting to Ruby. Because switching course in mid-stream
 is always the best approach.
+
+
+## Day 07
+
+Today's puzzle demonstrated a pretty fundamental weakness of my brain. I overcomplicated things, I used more
+regex than was necessary, and just took too long doing it. I'd like to say "lesson learned", but we'll see.
+Sticking with Javascript, by the way. I found a way to monkeypatch missing functionality onto Javascript
+objects. It's not as good as Ruby (a general truism), but it works.
+
