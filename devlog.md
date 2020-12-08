@@ -66,3 +66,12 @@ regex than was necessary, and just took too long doing it. I'd like to say "less
 Sticking with Javascript, by the way. I found a way to monkeypatch missing functionality onto Javascript
 objects. It's not as good as Ruby (a general truism), but it works.
 
+
+## Day 08
+
+Today's puzzle was pretty easy. My only hangup was not thinking to make copy of the code in puzzle2, so when
+it ran, it was running with all of the changed instructions, instead of just the one I was focusing on.
+Figured that out, but it took a little longer than I would have liked. Still, a much better showing than the
+last couple days.
+
+

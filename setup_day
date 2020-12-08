@@ -9,7 +9,6 @@ SRC="src/day${DAY}.js"
 
 touch $SRC
 
-echo "const aoc = require('./aoc')" >> $SRC
 echo "const Loader = require('./loader')" >> $SRC
 echo "const SolverBase = require('./solver_base')" >> $SRC
 echo "" >> $SRC
