@@ -75,3 +75,10 @@ Figured that out, but it took a little longer than I would have liked. Still, a 
 last couple days.
 
 
+## Day 09
+
+A tricky one, with various off-by-one errors when indexing. Had to just print out arrays a couple times and
+count to make sure all the values were there.
+
+
+
