@@ -81,4 +81,9 @@ A tricky one, with various off-by-one errors when indexing. Had to just print ou
 count to make sure all the values were there.
 
 
+## Day 10
 
+The first one was a simple list reordering and counting. Knocked that out pretty quick. The second looked much
+formidable. I figured I was going to have to wait until tomorrow to solve, and it was going to be a solver
+that I knew could be more efficient but was ok with it running for a few hours. It turned out to be easier 
+than I was expecting.
