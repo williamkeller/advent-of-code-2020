@@ -14,6 +14,7 @@ class SolverDay10 extends SolverBase {
     })
   }
 
+  
 
   puzzle1() {
     let data = this.loadData()
