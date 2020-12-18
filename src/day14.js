@@ -2,6 +2,11 @@ const Loader = require('./loader')
 const SolverBase = require('./solver_base')
 
 
+
+const FORCE_0 = 'A'
+const FORCE_1 = 'B'
+
+
 class SolverDay14 extends SolverBase {
   constructor(testData = false) {
     super('14', testData)
@@ -44,6 +49,9 @@ class SolverDay14 extends SolverBase {
     for(let i = 0; i < len; i++) {
       let mchar = mask[mask.length - 1 - i]
       switch(mchar) {
+        case FORCE_0:
+          break
+        case FORCE_1:
         case '1':
           conv += (BigInt(1) << BigInt(i))
           break
@@ -70,11 +78,11 @@ class SolverDay14 extends SolverBase {
     let head = mask.slice(0, index)
     let tail = mask.slice(index + 1)
 
-    results = this.permute_mask('0' + tail)
+    results = this.permute_mask(FORCE_0 + tail)
     for(let result of results) {
       masks.push(head + result)
     }
-    results = this.permute_mask('1' + tail)
+    results = this.permute_mask(FORCE_1 + tail)
     for(let result of results) {
       masks.push(head + result)
     }
@@ -144,7 +152,7 @@ class SolverDay14 extends SolverBase {
 
         for(let mask of masks) {
           let newIndex = this.apply_memory_mask(index, mask)
-          console.log('** ' + mask, index, (index >>> 0).toString(2), newIndex, (parseInt(newIndex) >>> 0).toString(2))
+          // console.log('** ' + mask, index, (index >>> 0).toString(2), newIndex, (parseInt(newIndex) >>> 0).toString(2))
           memory[BigInt(newIndex)] = number
         }
         console.log('\n\n')
@@ -154,12 +162,12 @@ class SolverDay14 extends SolverBase {
       throw `Unexpected line format: ${line}`
     }
 
-    // let total = BigInt(0)
-    // for(let num of Object.values(memory))
-    //   total += BigInt(num)
+    let total = BigInt(0)
+    for(let num of Object.values(memory))
+      total += BigInt(num)
 
-    // console.log(Object.values(memory).length)
-    // console.log(total)
+    console.log(Object.values(memory).length)
+    console.log(total)
   }
 }
 
