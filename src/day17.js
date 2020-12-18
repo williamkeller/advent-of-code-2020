@@ -1,5 +1,6 @@
 const Loader = require('./loader')
 const SolverBase = require('./solver_base')
+const util = require('util')
 
 
 class SolverDay17 extends SolverBase {
@@ -12,74 +13,124 @@ class SolverDay17 extends SolverBase {
     return Loader.load2dCharArray(this.dataFile)
   }
 
-  // neighbors for a single cell
-  neighborMap3D(x, y, z) {
-    let map = []
 
-    for(let xoff = -1; xoff < 2; xoff++) {
-      for(let yoff = -1; yoff < 2; yoff++) {
-        for(let zoff = -1; zoff < 2; zoff++) {
-          map.push([x = xoff, y + yoff, z + zoff])
+  neighbors(coord) {
+    let [x, y, z] = coord.split(':').map(x => parseInt(x))
+    return [
+      [x - 1, y - 1, z - 1],
+      [x - 1, y,     z - 1],
+      [x - 1, y + 1, z - 1],
+
+      [x,     y - 1, z - 1],
+      [x,     y,     z - 1],
+      [x,     y + 1, z - 1],
+
+      [x + 1, y - 1, z - 1],
+      [x + 1, y,     z - 1],
+      [x + 1, y + 1, z - 1],
+
+      [x - 1, y - 1, z    ],
+      [x - 1, y,     z    ],
+      [x - 1, y + 1, z    ],
+
+      [x,     y - 1, z    ],
+//      [x,     y,     z    ],
+      [x,     y + 1, z    ],
+
+      [x + 1, y - 1, z    ],
+      [x + 1, y,     z    ],
+      [x + 1, y + 1, z    ],
+
+      [x - 1, y - 1, z + 1],
+      [x - 1, y,     z + 1],
+      [x - 1, y + 1, z + 1],
+
+      [x,     y - 1, z + 1],
+      [x,     y,     z + 1],
+      [x,     y + 1, z + 1],
+
+      [x + 1, y - 1, z + 1],
+      [x + 1, y,     z + 1],
+      [x + 1, y + 1, z + 1],
+    ]
+  }
+
+
+  expand(cube) {
+    let coords = Array.from(cube.keys())
+
+    for(let coord of coords) {
+      let neighbors = this.neighbors(coord)
+
+      for(let n of neighbors) {
+        n = n.join(':')
+        if(cube.has(n) == false) {
+          cube.set(n, '.')
+        }
+      }
+    }
+    return cube
+  }
+
+
+  step(cube) {
+    let coords = Array.from(cube.keys())
+    let newCube = new Map()
+
+    for(let coord of coords) {
+      let count = 0
+      let neighbors = this.neighbors(coord)
+      let value = cube.get(coord)
+      for(let n of neighbors) {
+        n = n.join(':')
+        let v = cube.get(n)
+        if(v === '#') {
+          count += 1
+        }
+      }
+
+      if(value === '#') {
+        if(count < 2 || count > 3) {
+          newCube.set(coord, '.')
+        }
+        else {
+          newCube.set(coord, '#')
+        }
+      } else {
+        if(count == 3) {
+          newCube.set(coord, '#')
+        }
+        else {
+          newCube.set(coord, '.')
         }
       }
     }
 
-    // don't include the current cell
-    map.splice(map.indexOf([x, y, z]), 1)
-
-    return map
-  }
-
-  step(cube) {
-    let newCube = {}
-
-    for(let [k, v] of Object.entries(cube)) {
-      let [x, y, z] = k.split(',').map(x => parseInt(x))
-      // console.log(`looking at ${x}, ${y}, ${z}`)
-
-      let neighbors = this.neighborMap3D(x, y, z)
-      let ncount = neighbors.map(([nx, ny, nz]) => {
-        let coords = [nx, ny, nz].toString()
-        let n = cube[coords]
-        if(n == undefined) {
-          cube[coords] = '.'
-          return false
-        }
-        else if(n == '.')
-          return false
-
-        else
-          return true
-
-      }).reduce((acc, n) => {
-        return n == true ? acc + 1 : acc
-      }, 0)
-
-      // console.log(x, y, z, ncount)
-      if(v == '.' && ncount == 3)
-        newCube[[x, y, z]] = '#'
-      else if(v == '#' && (ncount == 2 || ncount == 3))
-        newCube[[x, y, z]] = '#'
-      else
-        newCube[[x, y, z]] = '.'
-    }
     return newCube
   }
 
-  puzzle1() {
-    let data = this.loadData(this.dataFile)
-    let cube = {}
 
-    for(let y = 0; y < data.length; y++) {
-      for(let x = 0; x < data[y].length; x++) {
-        cube[[x, y, 0]] = data[y][x]
+  puzzle1() {
+    let data = this.loadData()
+    let cube = new Map()
+
+    for(let row = 0; row < data.length; row++) {
+      for(let col = 0; col < data[row].length; col++) {
+        cube.set([col, row, 0].join(':'), data[row][col])
       }
     }
 
-    console.log(cube)
-    let newCube = this.step(cube)
+    for(let i = 0; i < 6; i++) {
+      console.log(`step ${i}`)
+      cube = this.expand(cube)
+      cube = this.step(cube)
+    }
+    let count = 0
+    for(let v of cube.values())
+      if(v == '#')
+        count += 1
 
-    console.log(newCube)
+    console.log(`count = ${count}`)
   }
 
 
